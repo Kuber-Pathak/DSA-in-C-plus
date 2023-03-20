@@ -29,24 +29,32 @@ void Insert_at_tail(Node *&head, int value)
     }
     temp->next = n;
 }
-void Insert_at_head(Node *&head, int value)
+// Iterative way to reverse
+Node *iReverse(Node *&head)
 {
-    Node *n = new Node(value);
-    n->next = head;
-    head = n;
-}
-bool search(Node *&head, int val)
-{
-    Node *temp = head;
-    while (temp != 0)
+    Node *previous = NULL;
+    Node *current = head;
+    Node *next;
+    while (current != NULL)
     {
-        if (temp->value == val)
-        {
-            return true;
-        }
-
-        temp = temp->next;
+        next = current->next;
+        current->next = previous;
+        previous = current;
+        current = next;
     }
+    return previous;
+}
+// Recursive way to reverse
+Node *rReverse(Node *&head)
+{
+    if (head == NULL || head->next == NULL)
+    {
+        return head;
+    }
+    Node *newhead = rReverse(head->next);
+    head->next->next = head;
+    head->next = NULL;
+    return newhead;
 }
 void display(Node *&head)
 {
@@ -65,8 +73,9 @@ int main()
     Insert_at_tail(head, 3);
     Insert_at_tail(head, 4);
     display(head);
-    Insert_at_head(head, 5);
-    display(head);
-    cout << search(head, 5) << endl;
-    ;
+    // Node *newHead = iReverse(head);
+    // display(newHead);
+    Node *newHead = rReverse(head);
+    display(newHead);
+    return 0;
 }

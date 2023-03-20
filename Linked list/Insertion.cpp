@@ -29,31 +29,24 @@ void Insert_at_tail(Node *&head, int value)
     }
     temp->next = n;
 }
-void deleteAtHead(Node *&head)
+void Insert_at_head(Node *&head, int value)
 {
-    Node *todelete = head;
-    head = head->next;
-    delete todelete;
+    Node *n = new Node(value);
+    n->next = head;
+    head = n;
 }
-void delete_node(Node *&head, int val)
+bool search(Node *&head, int val)
 {
-    if (head == NULL)
-    {
-        return;
-    }
-    if (head->next == NULL)
-    {
-        deleteAtHead(head);
-        return;
-    }
     Node *temp = head;
-    while (temp->next->value != val)
+    while (temp != 0)
     {
+        if (temp->value == val)
+        {
+            return true;
+        }
+
         temp = temp->next;
     }
-    Node *todelete = temp->next;
-    temp->next = temp->next->next;
-    delete todelete;
 }
 void display(Node *&head)
 {
@@ -72,7 +65,8 @@ int main()
     Insert_at_tail(head, 3);
     Insert_at_tail(head, 4);
     display(head);
-    delete_node(head, 3);
-    deleteAtHead(head);
+    Insert_at_head(head, 5);
     display(head);
+    cout << search(head, 5) << endl;
+    return 0;
 }
