@@ -27,4 +27,5 @@ int main()
 {
     string s = "? doing you are Hey,how";
     reverseSentence(s);
+    return 0;
 }
