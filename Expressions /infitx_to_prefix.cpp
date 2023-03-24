@@ -1,6 +1,7 @@
-// to convert infix string to postfix string
+// TO convert infix sttrign to prefix string
 #include <iostream>
 #include <stack>
+#include <algorithm>
 using namespace std;
 int prec(char c)
 {
@@ -22,8 +23,9 @@ int prec(char c)
     }
 }
 
-string infixtoPostfix(string s)
+string infixtoPrefix(string s)
 {
+    reverse(s.begin(), s.end());
     stack<int> st;
     string result;
     for (int i = 0; i < s.length(); i++)
@@ -32,13 +34,13 @@ string infixtoPostfix(string s)
         {
             result += s[i];
         }
-        else if (s[i] == '(')
+        else if (s[i] == ')')
         {
             st.push(s[i]);
         }
-        else if (s[i] == ')')
+        else if (s[i] == '(')
         {
-            while (!st.empty() && st.top() != '(')
+            while (!st.empty() && st.top() != ')')
             {
                 result += st.top();
                 st.pop();
@@ -63,11 +65,12 @@ string infixtoPostfix(string s)
         result += st.top();
         st.pop();
     }
+    reverse(result.begin(), result.end());
     return result;
 }
 
 int main()
 {
-    cout << "The result is: " << infixtoPostfix("(a-b/c)*(a/k-l)") << endl;
+    cout << "The result is: " << infixtoPrefix("(a-b/c)*(a/k-l)") << endl;
     return 0;
 }
