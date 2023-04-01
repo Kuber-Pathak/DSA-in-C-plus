@@ -57,4 +57,5 @@ int main()
     root->right->right = new Node(7);
 
     cout << sumAtk(root, 2) << endl;
+    return 0;
 }
