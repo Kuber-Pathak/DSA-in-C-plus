@@ -12,15 +12,15 @@ struct Node
         left = NULL;
     }
 };
-Node *search(Node *root, int val)
+bool search(Node *root, int val)
 {
     if (root == NULL)
     {
-        return NULL;
+        return false;
     }
     if (root->data == val)
     {
-        return root;
+        return true;
     }
 
     if (root->data < val)
@@ -90,13 +90,13 @@ int main()
 
     // searcing
     int key = 3;
-    if (search(root, key) == NULL)
+    if (search(root, key) == false)
     {
         cout << "Key doesn't exist" << endl;
     }
     else
     {
-        cout << "Key exist" << endl;
+        cout << "Key exists" << endl;
     }
 
     // deleting

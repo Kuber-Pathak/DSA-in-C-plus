@@ -68,6 +68,6 @@ string infixtoPostfix(string s)
 
 int main()
 {
-    cout << "The result is: " << infixtoPostfix("(a-b/c)*(a/k-l)") << endl;
+    cout << "The result is: " << infixtoPostfix("A+(B/Z-(D*E$F)+G)*H") << endl;
     return 0;
 }
